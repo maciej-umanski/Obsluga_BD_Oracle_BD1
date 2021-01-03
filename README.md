@@ -8,10 +8,10 @@ python -m pip install cx_Oracle --upgrade pip
 
 ````
 
-Trzeba utworzyć folder "libraries" i skopiować do niego zawartość linka:
+Trzeba utworzyć folder "libraries" i skopiować do niego zawartość linka (Basic Package dla swojego OSu):
 
 ````
-https://download.oracle.com/otn_software/nt/instantclient/19900/instantclient-basic-windows.x64-19.9.0.0.0dbru.zip
+https://www.oracle.com/database/technologies/instant-client/downloads.html
 
 ````
 
