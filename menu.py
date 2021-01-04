@@ -8,31 +8,93 @@ class menu:
 
     def show_table_content_menu(self):
         res = self.database.get_table_names()
-        print("Wpisz numer tabeli do wypisania")
-        while True:
+        if res:
+            print("Wpisz numer tabeli do wypisania")
             try:
                 choice = int(input())
             except:
                 print("Błąd")
                 return
             else:
-                self.database.print_table(res[0][choice])
+                if choice >= 0 and choice <= len(res)-1:
+                    self.database.print_table(res[choice][0])
+                    return
+                else:
+                    print("Wybrano złą opcje!")
+                    return;
+        else:
+            print("W bazie danych nie ma żadnych tabel!")
+
+    def add_content_menu(self):
+        res = self.database.get_table_names()
+        if res:
+            print("Wpisz numer tabeli do której chcesz wpisać informacje")
+            try:
+                choice = int(input())
+            except:
+                print("Błąd")
                 return
+            else:
+                if choice >= 0 and choice <= len(res)-1:
+                    self.database.table_input(res[choice][0])
+                    return
+                else:
+                    print("Wybrano złą opcje!")
+                    return;
+        else:
+            print("W bazie danych nie ma żadnych tabel!")
+
+    def delete_content_menu(self):
+        res = self.database.get_table_names()
+        if res:
+            print("Wpisz numer tabeli z której chcesz usunąć daną")
+
+            try:
+                choice = int(input())
+            except:
+                print("Błąd")
+                return
+            else:
+                if choice >= 0 and choice <= len(res)-1:
+                    choice1 = choice
+                    res1 = self.database.print_table(res[choice][0])
+                    print("Wpisz numer wiersza który chcesz usunąć")
+                    try:
+                        choice = int(input())
+                    except:
+                        print("Błąd!")
+                        return
+                    else:
+                        if choice >= 0 and choice <= len(res1)-1:
+                            header = self.database.get_id_header(res[choice1][0])
+                            self.database.delete_row_from_table(res[choice1][0], header, res1[choice][0])  
+                        else:
+                            print("Wybrano zła opcje!")
+                            return;
+                else:
+                    print("Wybrano złą opcje!")
+                    return;
 
     def print_menu(self):
         while True:
             print("//MENU//")
             print("0. Wyjdź z programu")
             print("1. Wyświetl zawartość tabel")
+            print("2. Dodaj rekord do tabeli")
+            print("3. Usun rekord z tabeli")
 
             try:
-                self.choice = int(input())
+                choice = int(input())
             except:
                 print("Błąd!")
             else:
-                if self.choice == 0:
+                if choice == 0:
                     sys.exit()
-                elif self.choice == 1:
+                elif choice == 1:
                     self.show_table_content_menu()
+                elif choice == 2:
+                    self.add_content_menu()
+                elif choice == 3:
+                    self.delete_content_menu()
                 else:
                     print("Wybrałeś złą opcje, spróbuj ponownie!")
