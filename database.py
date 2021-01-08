@@ -42,8 +42,8 @@ class database:
         cur = self.connection.cursor()
         try:
             cur.execute(f'select * from {table}')
-        except:
-            print("Błąd!")
+        except db.Error as error:
+            print(f'Błąd! {error}')
         else:
             res = cur.fetchall()
             if len(res) != 0:
@@ -54,6 +54,38 @@ class database:
         finally:
             cur.close()
             return res
+
+    def get_views_names(self):
+        cur = self.connection.cursor()
+        try:
+            cur.execute("select view_name from user_views")
+        except db.Error as error:
+            print(f'Błąd! {error}')
+        else:
+            res = cur.fetchall()
+            if len(res) != 0:
+                for i, row in enumerate(res):
+                    print(f'{i}. {row[0]}')
+            else:
+                print("Nie ma żadnych widoków!")
+        finally:
+            cur.close()
+            return res
+
+    def print_view(self, view):
+        cur = self.connection.cursor()
+        try:
+            cur.execute(f'select * from {view}')
+        except db.Error as error:
+            print(f'Błąd! {error}')
+        else:
+            res = cur.fetchall()
+            if len(res) != 0:
+                for i,row in enumerate(res):
+                    print(f'{i}. {row}')
+        finally:
+            cur.close()
+
 
     def get_table_names(self):
         cur = self.connection.cursor()

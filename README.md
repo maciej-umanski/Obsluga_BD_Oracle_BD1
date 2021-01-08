@@ -22,7 +22,9 @@ Do pliku config.py w zmiennych username, password wpisać login i hasło do swoj
   - wypisanie tabel w bazie danych
   - dodawanie rekordów do tabel
   - usuwanie rekordów z tabel
+  - widoki
 
  # DO ZROBIENIA
 
   - poprawne wykrywanie daty i formatowanie do insertu (database.py:35)
+  - kursory

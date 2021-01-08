@@ -48,7 +48,6 @@ class menu:
         res = self.database.get_table_names()
         if res:
             print("Wpisz numer tabeli z której chcesz usunąć daną")
-
             try:
                 choice = int(input())
             except:
@@ -75,6 +74,19 @@ class menu:
                     print("Wybrano złą opcje!")
                     return;
 
+    def show_views_menu(self):
+        res = self.database.get_views_names();
+        if(res):
+            print("Wpisz numer widoku do wyświetlenia:")
+            try:
+                choice = int(input())
+            except:
+                print("Błąd")
+                return
+            else:
+                if choice >= 0 and choice <= len(res)-1:
+                    self.database.print_view(res[0][choice])
+
     def print_menu(self):
         while True:
             print("//MENU//")
@@ -82,6 +94,8 @@ class menu:
             print("1. Wyświetl zawartość tabel")
             print("2. Dodaj rekord do tabeli")
             print("3. Usun rekord z tabeli")
+            print("4. Pokaż dostępne widoki")
+            print("5. Pokaż dostępne kursory")
 
             try:
                 choice = int(input())
@@ -96,5 +110,9 @@ class menu:
                     self.add_content_menu()
                 elif choice == 3:
                     self.delete_content_menu()
+                elif choice == 4:
+                    self.show_views_menu()
+                elif choice == 5:
+                    print("KURSORY")
                 else:
                     print("Wybrałeś złą opcje, spróbuj ponownie!")
