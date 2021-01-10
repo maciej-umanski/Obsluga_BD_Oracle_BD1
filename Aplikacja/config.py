@@ -1,5 +1,5 @@
-username = 'student17B_9'
-password = '@Phosphorus20'
+username = 'XXX'
+password = 'YYY'
 path = 'bryza.kin.tu.kielce.pl'
 port = 39215
 encoding = 'UTF-8'

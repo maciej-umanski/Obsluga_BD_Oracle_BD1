@@ -37,6 +37,8 @@ class database:
             return f'\'{data}\''
         elif (data_type.name == 'DB_TYPE_NUMBER'):
             return data
+        elif (data_type.name == 'DB_TYPE_DATE'):
+            return f'TO_DATE(\'{data}\',\'yyyy/mm/dd\')'
 
     def print_table(self, table):
         cur = self.connection.cursor()
@@ -72,6 +74,48 @@ class database:
             cur.close()
             return res
 
+    def get_cursors_names(self):
+        cur = self.connection.cursor()
+        try:
+            cur.execute("select object_name from USER_PROCEDURES where object_type in ('PROCEDURE')")
+        except db.Error as error:
+            print(f'Błąd! {error}')
+        else:
+            res = cur.fetchall()
+            if len(res) != 0:
+                for i, row in enumerate(res):
+                    print(f'{i}. {row[0]}')
+            else:
+                print("Nie ma żadnych kursorów!")
+        finally:
+            cur.close()
+            return res
+
+    def dbms_lines(self):
+        cur = self.connection.cursor()
+        cur.callproc("dbms_output.enable")
+        status = cur.var( db.NUMBER)
+        line   = cur.var( db.STRING)
+        while True:
+            cur.callproc( "DBMS_OUTPUT.GET_LINE", (line, status))
+            if status.getvalue() != 0:
+                break
+            print(line.getvalue())
+        cur.close()
+
+    def print_cursor(self, cursor):
+        cur = self.connection.cursor()
+        try:
+            sqlCommand = f'call {cursor}()'
+            cur.execute(sqlCommand)
+            self.connection.commit()
+        except db.Error as error:
+            print(f'Błąd! {error}')
+        else:
+            self.dbms_lines()
+        finally:
+            cur.close()
+
     def print_view(self, view):
         cur = self.connection.cursor()
         try:
@@ -83,6 +127,22 @@ class database:
             if len(res) != 0:
                 for i,row in enumerate(res):
                     print(f'{i}. {row}')
+        finally:
+            cur.close()
+
+    def get_triggers_names(self):
+        cur = self.connection.cursor()
+        try:
+            cur.execute("select object_name from USER_PROCEDURES where object_type in ('TRIGGER')")
+        except db.Error as error:
+            print(f'Błąd! {error}')
+        else:
+            res = cur.fetchall()
+            if len(res) != 0:
+                for i, row in enumerate(res):
+                    print(f'{i}. {row[0]}')
+            else:
+                print("Nie ma żadnych wyzwalaczy!")
         finally:
             cur.close()
 
@@ -101,6 +161,7 @@ class database:
         cur.execute(f'select * from {table}')
         headers = [i[0] for i in cur.description]
         types = [i[1] for i in cur.description]
+        print("format daty : yyyy/mm/dd")
         print("Wpisuj informacje które chcesz dodać do tabeli:")
         data = [input(f'({types[index].name}){header}: ') for index, header in enumerate(headers)]
         dataStr = ""
@@ -138,7 +199,6 @@ class database:
         try:
             sqlCommand = f'DELETE FROM {table} WHERE {table}.{ID_header_name} = {ID}'
             cur.execute(sqlCommand)
-            print(sqlCommand)
             self.connection.commit()
         except db.Error as error:
             print(f'Błąd: {error}')
@@ -146,6 +206,3 @@ class database:
             print("Udało się usunąć dane!")
         finally:
             cur.close();
-
-
-
