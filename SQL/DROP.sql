@@ -1,3 +1,5 @@
+----------------Usuwanie triggerów------------------
+DROP TRIGGER OCENY_LOG_TRIGGER;
 ----------------Usuwanie tabel ------------------
 DROP TABLE ADRESY CASCADE CONSTRAINTS;
 DROP TABLE KIERUNKI CASCADE CONSTRAINTS;
@@ -9,3 +11,17 @@ DROP TABLE OCENY CASCADE CONSTRAINTS;
 DROP TABLE PRACE_DYPLOMOWE CASCADE CONSTRAINTS;
 DROP TABLE STUDENCI CASCADE CONSTRAINTS;
 DROP TABLE PRZEDMIOTY CASCADE CONSTRAINTS;
+DROP TABLE OCENY_LOG CASCADE CONSTRAINTS;
+----------------Usuwanie widoków------------------
+DROP VIEW studenci_dane;
+DROP VIEW rodzina_na_uczelni;
+DROP VIEW studenci_z_danego_miasta;
+DROP VIEW prace_dyplomowe_widok;
+DROP VIEW najliczniejszy_akademik;
+DROP VIEW prymusi;
+----------------Usuwanie kursorów------------------
+DROP PROCEDURE studenci_warunek;
+DROP PROCEDURE dodatek_wiekowy;
+DROP PROCEDURE absolwenci;
+DROP PROCEDURE srednia_pensja_brutto;
+
