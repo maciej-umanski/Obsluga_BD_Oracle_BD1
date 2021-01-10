@@ -20,8 +20,11 @@ Do pliku config.py w zmiennych username, password wpisać login i hasło do swoj
  # ZROBIONE
 
   - APLIKACJA
-
-
+  - WIDOKI
+  - KURSORY
+  - CREATE
+  - INSERTY
+  
  # DO ZROBIENIA
 
   - 2 TRIGGERY
