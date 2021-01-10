@@ -19,6 +19,19 @@ class menu:
                 self.database.print_table(res[0][choice])
                 return
 
+    def show_cursors_menu(self):
+        res = self.database.get_cursors_names();
+        if(res):
+            print("Wpisz numer kursora do wyświetlenia:")
+            try:
+                choice = int(input())
+            except:
+                print("Błąd")
+                return
+            else:
+                if choice >= 0 and choice <= len(res)-1:
+                    self.database.print_cursor(res[0][choice])
+                    
     def print_menu(self):
         while True:
             print("//MENU//")
@@ -34,5 +47,16 @@ class menu:
                     sys.exit()
                 elif self.choice == 1:
                     self.show_table_content_menu()
+<<<<<<< Updated upstream
+=======
+                elif choice == 2:
+                    self.add_content_menu()
+                elif choice == 3:
+                    self.delete_content_menu()
+                elif choice == 4:
+                    self.show_views_menu()
+                elif choice == 5:
+                    self.show_cursors_menu()
+>>>>>>> Stashed changes
                 else:
                     print("Wybrałeś złą opcje, spróbuj ponownie!")
