@@ -1,0 +1,16 @@
+TRIGGER oceny_log_trigger
+AFTER INSERT OR UPDATE OR DELETE ON OCENY
+FOR EACH ROW
+DECLARE
+  exist NUMBER(6);
+  actions VARCHAR2(20);
+BEGIN
+  SELECT count(*) INTO exist FROM OCENY_LOG;
+  actions := CASE
+         WHEN UPDATING THEN 'UPDATE'
+         WHEN DELETING THEN 'DELETE'
+         WHEN INSERTING THEN 'INSERT'
+   END;
+  exist := exist + 1;
+  INSERT INTO OCENY_LOG VALUES (exist, actions, :NEW.Id_oceny, CURRENT_DATE);
+END;

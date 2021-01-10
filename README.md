@@ -19,12 +19,12 @@ Do pliku config.py w zmiennych username, password wpisać login i hasło do swoj
 
  # ZROBIONE
 
-  - wypisanie tabel w bazie danych
-  - dodawanie rekordów do tabel
-  - usuwanie rekordów z tabel
-  - widoki
+  - APLIKACJA
+
 
  # DO ZROBIENIA
 
-  - poprawne wykrywanie daty i formatowanie do insertu (database.py:35)
-  - kursory
+  - 2 TRIGGERY
+  - Uzupełnić DROP.sql
+  - Uzupełnić exmaples.sql
+  - dokończyć sprawozdanie

@@ -3,9 +3,9 @@
 ---------------Kursor nr1 - studenci na poœcigu---------
 
 CREATE OR REPLACE PROCEDURE studenci_warunek
-IS CURSOR studenci_warunek_cursor IS 
-	SELECT s.IMIE, s.NAZWISKO, s.PESEL, p.NAZWA, o.OCENA 
-	FROM STUDENCI s, OCENY o, PRZEDMIOTY p 
+IS CURSOR studenci_warunek_cursor IS
+	SELECT s.IMIE, s.NAZWISKO, s.PESEL, p.NAZWA, o.OCENA
+	FROM STUDENCI s, OCENY o, PRZEDMIOTY p
 	WHERE o.ID_STUDENTA = s.ID_STUDENTA
 	AND o.OCENA < 3
 	AND p.ID_PRZEDMIOTU = o.ID_PRZEDMIOTU;
@@ -49,9 +49,9 @@ BEGIN
 	END IF;
 	IF (miesiac <= 12) THEN rok := rok + 1900;
 	END IF;
-	IF (EXTRACT(YEAR FROM CURRENT_DATE) - rok > 50) THEN 
+	IF (EXTRACT(YEAR FROM CURRENT_DATE) - rok > 50) THEN
 	pensja := pensja * 1.05;
-	UPDATE PRACOWNICY 
+	UPDATE PRACOWNICY
 	SET PENSJA_BRUTTO = pensja
 	WHERE CURRENT OF dodatek_pensja_cursor;
 	DBMS_OUTPUT.PUT_LINE ('Pracownik ' || imie || ' ' || nazwisko || ' otrzyma³ podwy¿kê w wysokoœci 5% pensji.');
@@ -65,11 +65,11 @@ END;
 CREATE OR REPLACE PROCEDURE absolwenci IS
 CURSOR absolwenci_etap IS
 SELECT s.IMIE, s.NAZWISKO, s.PESEL, k.NAZWA AS Kierunek, count(s.PESEL)
-FROM PRACE_DYPLOMOWE pd, STUDENCI s, KIERUNKI k 
+FROM PRACE_DYPLOMOWE pd, STUDENCI s, KIERUNKI k
 WHERE
-	pd.ID_STUDENTA = s.ID_STUDENTA AND 
+	pd.ID_STUDENTA = s.ID_STUDENTA AND
 	k.ID_KIERUNKU = s.ID_KIERUNKU
-GROUP BY 
+GROUP BY
 s.NAZWISKO, s.PESEL, k.NAZWA, s.IMIE
 ORDER BY count(s.PESEL) ASC;
 imie VARCHAR2(15);
@@ -97,8 +97,8 @@ END;
 
 ---------------Kursor nr4 - œrednia pensja pracowników ---------
 
-CREATE OR REPLACE PROCEDURE srednia_pensja_brutto IS 
-CURSOR srednia_pensja_cursor IS 
+CREATE OR REPLACE PROCEDURE srednia_pensja_brutto IS
+CURSOR srednia_pensja_cursor IS
 SELECT p.PENSJA_BRUTTO
 FROM PRACOWNICY p;
 pensja NUMBER;

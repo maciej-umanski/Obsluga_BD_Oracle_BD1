@@ -1,6 +1,6 @@
 -------------------------Dodanie tabel-----------------------
 
------------Wydzia³y-----------
+-----------Wydziaï¿½y-----------
 
 CREATE TABLE Wydzialy (
 Id_wydzialu NUMBER CONSTRAINT wydzial_pk PRIMARY KEY,
@@ -108,3 +108,11 @@ Nr_pokoju NUMBER NOT NULL CONSTRAINT nr_pokoju_check CHECK(Nr_pokoju >0),
 Id_studenta NUMBER NOT NULL CONSTRAINT student_pokoj UNIQUE,
 CONSTRAINT akad_stud_fk FOREIGN KEY (Id_studenta) REFERENCES Studenci(Id_studenta)
 );
+
+---------Logi-----------
+
+CREATE TABLE OCENY_LOG (
+  id_operacji NUMBER CONSTRAINT oc_log_pk PRIMARY KEY,
+  operacja VARCHAR2(20),
+  id_oceny NUMBER,
+  data_operacji DATE);
