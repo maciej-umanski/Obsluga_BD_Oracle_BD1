@@ -1,5 +1,7 @@
 ----------------Usuwanie triggerów------------------
 DROP TRIGGER OCENY_LOG_TRIGGER;
+DROP TRIGGER komunikat_student_trigger;
+DROP TRIGGER komunikat_pracownik_trigger;
 ----------------Usuwanie tabel ------------------
 DROP TABLE ADRESY CASCADE CONSTRAINTS;
 DROP TABLE KIERUNKI CASCADE CONSTRAINTS;
@@ -24,4 +26,3 @@ DROP PROCEDURE studenci_warunek;
 DROP PROCEDURE dodatek_wiekowy;
 DROP PROCEDURE absolwenci;
 DROP PROCEDURE srednia_pensja_brutto;
-
