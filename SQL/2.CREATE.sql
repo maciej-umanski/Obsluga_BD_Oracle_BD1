@@ -1,6 +1,6 @@
 -------------------------Dodanie tabel-----------------------
 
------------Wydziaï¿½y-----------
+-----------Wydzia³y-----------
 
 CREATE TABLE Wydzialy (
 Id_wydzialu NUMBER CONSTRAINT wydzial_pk PRIMARY KEY,

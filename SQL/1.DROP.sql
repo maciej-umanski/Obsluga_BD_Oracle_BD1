@@ -2,6 +2,7 @@
 DROP TRIGGER OCENY_LOG_TRIGGER;
 DROP TRIGGER komunikat_student_trigger;
 DROP TRIGGER komunikat_pracownik_trigger;
+DROP TRIGGER komunikat_pokoje_trigger;
 ----------------Usuwanie tabel ------------------
 DROP TABLE ADRESY CASCADE CONSTRAINTS;
 DROP TABLE KIERUNKI CASCADE CONSTRAINTS;

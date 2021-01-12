@@ -24,10 +24,8 @@ Do pliku config.py w zmiennych username, password wpisać login i hasło do swoj
   - KURSORY
   - CREATE
   - INSERTY
-  
- # DO ZROBIENIA
-
   - 2 TRIGGERY
   - Uzupełnić DROP.sql
   - Uzupełnić exmaples.sql
   - dokończyć sprawozdanie
+  
