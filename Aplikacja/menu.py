@@ -100,7 +100,7 @@ class menu:
             else:
                 if choice >= 0 and choice <= len(res)-1:
                     print("")
-                    self.database.print_view(res[0][choice])
+                    self.database.print_view(res[choice][0])
 
     def print_menu(self):
         while True:
